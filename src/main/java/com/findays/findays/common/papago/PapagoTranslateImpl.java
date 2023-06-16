@@ -1,14 +1,13 @@
 package com.findays.findays.common.papago;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.net.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,18 +15,23 @@ import java.util.Map;
 @Configuration
 public class PapagoTranslateImpl implements PapagoTranslate {
 
-//    public static String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
-//
-//    @Value("${naver.papago.clientId}")
-//    public static String clientId;//애플리케이션 클라이언트 아이디값";
-//
-//    @Value("${naver.papago.clientSecret}")
-//    public static String clientSecret;//애플리케이션 클라이언트 시크릿값";
+    public static String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
+
+    @Value("${naver.papago.clientId}")
+    public static String clientId;//애플리케이션 클라이언트 아이디값";
+
+    @Value("${naver.papago.clientSecret}")
+    public static String clientSecret;//애플리케이션 클라이언트 시크릿값";
 
     @Override
-    public String post(String apiUrl, Map<String, String> requestHeaders, String text) {
-        HttpURLConnection con = connect(apiUrl);
+    public String post(String text) {
+        HttpURLConnection con = connect(apiURL);
         String postParams = "source=ko&target=en&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
+
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("X-Naver-Client-Id", clientId);
+        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+
         try {
             con.setRequestMethod("POST");
             for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
@@ -41,15 +45,9 @@ public class PapagoTranslateImpl implements PapagoTranslate {
             }
 
             int responseCode = con.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 응답
-                System.out.println("== 과연..! ==");
-                System.out.println(responseCode);
-                System.out.println(con.getInputStream());
-                System.out.println(responseCode);
-                System.out.println("===============");
 
+            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 응답
                 return readBody(con.getInputStream());
-                // todo : 이걸 그냥 json 으로 받으려면 어떻게 바꾸는게 좋을까 ?
             } else {  // 에러 응답
                 log.error(con.getErrorStream().toString());
                 return readBody(con.getErrorStream());

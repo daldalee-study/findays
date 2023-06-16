@@ -14,7 +14,7 @@ public class TestController {
     private final PapagoTranslateService ppg;
 
     @GetMapping("/test")
-    public Map<String, Object> test(){
-        return ppg.translation("미국");
+    public void test(){
+        ppg.translation("미국");
     }
 }
