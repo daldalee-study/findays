@@ -1,8 +1,8 @@
-package com.findays.findays.common.papago;
+package com.findays.findays.common.api.papago;
 
-import com.findays.findays.common.papago.dto.PapagoRes;
-import com.findays.findays.common.papago.model.RegionDictionary;
-import com.findays.findays.common.papago.respository.RegionDictionaryRepository;
+import com.findays.findays.common.api.papago.model.RegionDictionary;
+import com.findays.findays.common.api.papago.respository.RegionDictionaryRepository;
+import com.findays.findays.common.api.papago.dto.PapagoRes;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.findays.findays.common.papago.dto;
+package com.findays.findays.common.api.papago.dto;
 
 import lombok.Getter;
 

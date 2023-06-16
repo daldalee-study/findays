@@ -1,7 +1,7 @@
 package com.findays.findays.common.geocoding;
 
 import com.findays.findays.common.GlobalConfig;
-import com.findays.findays.common.papago.PapagoTranslateService;
+import com.findays.findays.common.api.papago.PapagoTranslateService;
 import com.findays.findays.common.geocoding.dto.ReversGeocodeRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

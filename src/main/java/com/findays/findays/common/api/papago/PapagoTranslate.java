@@ -1,4 +1,4 @@
-package com.findays.findays.common.papago;
+package com.findays.findays.common.api.papago;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
