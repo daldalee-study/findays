@@ -17,11 +17,11 @@ public class PapagoTranslateImpl implements PapagoTranslate {
 
     public static String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
 
-    @Value("${naver.papago.clientId}")
-    public static String clientId;//애플리케이션 클라이언트 아이디값";
+    @Value("#{environment['naver.papago.clientId']}")
+    public String clientId;//애플리케이션 클라이언트 아이디값";
 
-    @Value("${naver.papago.clientSecret}")
-    public static String clientSecret;//애플리케이션 클라이언트 시크릿값";
+    @Value("#{environment['naver.papago.clientSecret']}")
+    public String clientSecret;//애플리케이션 클라이언트 시크릿값";
 
     @Override
     public String post(String text) {
