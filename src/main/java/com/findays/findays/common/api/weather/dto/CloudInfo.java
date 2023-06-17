@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 public class CloudInfo {
-    @Schema(description ="")
+    @Schema(description ="흐림 정도/%")
     private int all;
 }

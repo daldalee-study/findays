@@ -19,11 +19,10 @@ public class PapagoTranslateService {
     private final PapagoTranslateImpl papagoTranslateImpl;
     private final RegionDictionaryRepository regionDictionaryRepository;
 
-    public String translation(String text){
+    public RegionDictionary translation(String text){
         return regionDictionaryRepository
             .findByKoRegion(text)
-            .orElse(regionTranslation(text))
-            .getEnRegion();
+            .orElse(regionTranslation(text));
     }
 
     public RegionDictionary regionTranslation(String text){

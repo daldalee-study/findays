@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class EtcInfo {
-    @Schema(description ="")
+    @Schema(description ="open weather 내부 매개변수")
     private int id;
 
-    @Schema(description ="")
+    @Schema(description ="open weather 내부 매개변수")
     private int type;
 
     @Schema(description ="국가 코드(GB, JP 등)")

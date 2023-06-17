@@ -19,9 +19,20 @@ public class RegionDictionary {
     @Column(nullable = false)
     private String koRegion;
 
+    @Column(nullable = false)
+    private double lat = 0.0;
+
+    @Column(nullable = false)
+    private double lon = 0.0;
+
     public RegionDictionary(String enRegion, String koRegion){
         this.enRegion = enRegion;
         this.koRegion = koRegion;
+    }
+
+    public void addCoordinate(double lat, double lon){
+        this.lat = lat;
+        this.lon = lon;
     }
 }
 

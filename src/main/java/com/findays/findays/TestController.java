@@ -1,10 +1,9 @@
 package com.findays.findays;
 
-import com.findays.findays.common.GlobalConfig;
-import com.findays.findays.common.api.weather.WeatherClient;
-import com.findays.findays.common.geocoding.ReversGeocodingService;
-import com.findays.findays.common.geocoding.dto.ReversGeocodeRes;
-import com.findays.findays.common.api.papago.PapagoTranslateService;
+import com.findays.findays.common.api.weather.WeatherService;
+import com.findays.findays.common.api.weather.dto.NowWeatherRes;
+import com.findays.findays.common.geocoding.GeocodingService;
+import com.findays.findays.common.geocoding.dto.GeocodeRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,23 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    private final PapagoTranslateService papagoTranslateService;
-    private final ReversGeocodingService reversGeocodingService;
-    private final WeatherClient weatherClient;
+    private final GeocodingService geocodingService;
+    private final WeatherService weatherService;
 
     @GetMapping("/test/{text}")
-    public Object test(
+    public NowWeatherRes test(
         @PathVariable
         String text
-    ){
-        ReversGeocodeRes geocodingRes = reversGeocodingService.reversGeocoding(text);
+    ) {
+        GeocodeRes geocodingRes = geocodingService.geocoding(text);
         double lat = geocodingRes.getLat();
         double lon = geocodingRes.getLon();
-        return weatherClient.findTodayWeather(
-            lat,
-            lon,
-            GlobalConfig.APP_ID
-        );
+        return weatherService.findNowWeather(lat, lon);
     }
 
 }

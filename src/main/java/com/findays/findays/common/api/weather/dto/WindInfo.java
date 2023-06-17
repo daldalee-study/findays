@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class WindInfo {
-    @Schema(description ="")
+    @Schema(description ="바람 속도")
     private double speed;
 
-    @Schema(description ="")
+    @Schema(description ="풍향")
     private int deg;
 
 }
