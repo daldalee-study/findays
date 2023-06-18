@@ -19,7 +19,7 @@ public class GeocodingService {
     private final GeocodingClient reversGeocodingClient;
     private final PapagoTranslateService papagoTranslateService;
 
-    public GeocodeRes geocoding(String koRegion) {
+    public GeocodeRes geocoding(String koRegion) throws Exception {
         RegionDictionary regionDictionary = papagoTranslateService.translation(koRegion);
         return regionDictionary.getLat() == 0.0 ?
             newGeocoding(regionDictionary) : new GeocodeRes(regionDictionary);
@@ -32,7 +32,7 @@ public class GeocodingService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public GeocodeRes newGeocoding (RegionDictionary regionDictionary){
+    public GeocodeRes newGeocoding (RegionDictionary regionDictionary) throws Exception{
         try{
             GeocodeRes geocodeRes =
                 reversGeocodingClient
@@ -42,7 +42,7 @@ public class GeocodingService {
         } catch (Exception e){
             log.error("Fail geocoding");
             log.error(Arrays.toString(e.getStackTrace()));
-            return null;
+            throw new Exception("실패~");
         }
     }
 

@@ -20,7 +20,7 @@ public class TestController {
     public NowWeatherRes test(
         @PathVariable
         String text
-    ) {
+    ) throws Exception {
         GeocodeRes geocodingRes = geocodingService.geocoding(text);
         double lat = geocodingRes.getLat();
         double lon = geocodingRes.getLon();
