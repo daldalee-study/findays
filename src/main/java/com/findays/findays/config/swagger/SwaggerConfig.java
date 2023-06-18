@@ -17,6 +17,7 @@ public class SwaggerConfig {
                         .license(new License()
                                 .name("Apache License Version 2.0")
                                 .url("http://www.apache.org/licenses/LICENSE-2.0"))
+
                 );
     }
 }
